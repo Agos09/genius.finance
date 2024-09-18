@@ -1,0 +1,4 @@
+baseURL = 'https://genius.finance'
+languageCode = 'en-us'
+title = 'Appunti di Economia Aziendale'
+theme = 'docsy-0.10.0'
