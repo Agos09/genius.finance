@@ -1,0 +1,36 @@
+#+TITLE: genius.finance — Hub software
+#+PROPERTY: Dominio genius.finance
+#+PROPERTY: Target Aziende, startup, partner tecnici
+
+* Ruolo
+Sito ombrello per presentare le web app (CER, smart farming, strumenti finanziari).
+
+* Codice
+- =site/= — landing Astro statica (hub moduli)
+- Build: =cd site && npm run build=
+- Output: =site/dist/= → VPS =/var/www/landing=
+
+* Moduli collegati
+| Modulo              | URL                    | Stato   |
+|---------------------+------------------------+---------|
+| Attested Field Data | smartagri.tech         | live    |
+| CER Genius          | cer.genius.finance     | beta    |
+| DCF Model           | dcf.genius.finance     | live    |
+| Patent Analysis     | patent.genius.finance  | live    |
+| Licensing Dashboard | licensing.genius.finance | live  |
+| ESG Genius          | esg.genius.finance     | soon    |
+
+* Sottodomini produzione
+- cer.genius.finance → =projects/cer-genius/=
+- dev.genius.finance → sandbox
+
+* Deploy
+#+begin_src bash
+./scripts/deploy-ecosistema-vps.sh
+#+end_src
+
+* Email
+tech@genius.finance — form contatti via FormSubmit (build =site/dist/=)
+
+* Drive
+kDrive /LAVORO/GENIUS_SaaS

@@ -1,0 +1,55 @@
+---
+import type { Module } from "@/data/site";
+
+interface Props {
+  module: Module;
+}
+
+const { module } = Astro.props;
+
+const accentMap = {
+  cyan: "from-genius-cyan/20 to-transparent border-genius-cyan/20 hover:border-genius-cyan/50",
+  violet: "from-genius-violet/20 to-transparent border-genius-violet/20 hover:border-genius-violet/50",
+  emerald: "from-genius-emerald/20 to-transparent border-genius-emerald/20 hover:border-genius-emerald/50",
+  amber: "from-genius-amber/20 to-transparent border-genius-amber/20 hover:border-genius-amber/50",
+};
+
+const statusLabel = { live: "Live", beta: "Beta", soon: "In arrivo" };
+const isExternal = module.status !== "soon";
+---
+
+<article
+  class={`card relative overflow-hidden bg-gradient-to-br ${accentMap[module.accent]} transition`}
+>
+  <div class="flex items-start justify-between gap-3 mb-3">
+    <div>
+      <p class="text-xs font-mono text-hub-muted">{module.subtitle}</p>
+      <h3 class="font-semibold text-white text-lg mt-1">{module.title}</h3>
+    </div>
+    <span class={`shrink-0 text-[10px] font-semibold uppercase tracking-wider px-2 py-1 rounded border status-${module.status}`}>
+      {statusLabel[module.status]}
+    </span>
+  </div>
+  <p class="text-sm text-hub-muted leading-relaxed mb-4">{module.description}</p>
+  <div class="flex flex-wrap gap-2 mb-5">
+    {module.tags.map((tag) => (
+      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-hub/60 text-hub-muted border border-hub-border">
+        {tag}
+      </span>
+    ))}
+  </div>
+  {
+    isExternal ? (
+      <a
+        href={module.url}
+        class="text-sm font-semibold text-genius-cyan hover:underline"
+        target="_blank"
+        rel="noopener"
+      >
+        Apri modulo →
+      </a>
+    ) : (
+      <span class="text-sm text-hub-muted">Disponibile a breve</span>
+    )
+  }
+</article>

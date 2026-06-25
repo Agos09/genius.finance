@@ -1,0 +1,20 @@
+---
+import { site } from "@/data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-hub-border bg-hub-card/50">
+  <div class="section-pad !py-10 flex flex-col sm:flex-row gap-6 sm:items-center sm:justify-between text-sm text-hub-muted">
+    <div>
+      <p class="font-semibold text-slate-200">{site.name}</p>
+      <p class="mt-1 font-mono text-xs">{site.brand} · {site.region}</p>
+    </div>
+    <div class="flex flex-col sm:items-end gap-1">
+      <a href="#contatto" class="hover:text-genius-cyan transition">
+        {site.contactEmail}
+      </a>
+      <a href={site.profileUrl} class="text-xs hover:text-genius-violet transition">agostinodeangelis.com</a>
+      <p class="text-xs">© {year}</p>
+    </div>
+  </div>
+</footer>

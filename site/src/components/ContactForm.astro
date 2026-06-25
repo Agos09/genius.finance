@@ -1,0 +1,106 @@
+---
+import { site } from "@/data/site";
+
+interface Props {
+  subjectPrefix?: string;
+}
+
+const { subjectPrefix = "[genius.finance] Contatto" } = Astro.props;
+const contactEmail = site.contactEmail;
+---
+
+<div class="contact-form-wrap text-left">
+  <form id="contact-form" class="space-y-4" novalidate>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <label class="form-label" for="cf-name">Nome</label>
+        <input class="form-input" id="cf-name" name="name" type="text" required minlength="2" autocomplete="name" />
+      </div>
+      <div>
+        <label class="form-label" for="cf-email">Email</label>
+        <input class="form-input" id="cf-email" name="email" type="email" required autocomplete="email" />
+      </div>
+      <div class="sm:col-span-2">
+        <label class="form-label" for="cf-company">Azienda / progetto (opzionale)</label>
+        <input class="form-input" id="cf-company" name="company" type="text" autocomplete="organization" />
+      </div>
+    </div>
+    <div>
+      <label class="form-label" for="cf-interest">Interesse</label>
+      <select class="form-input" id="cf-interest" name="interest" required>
+        <option value="">Seleziona…</option>
+        <option value="Attested Field Data / smartagri">Attested Field Data / smartagri</option>
+        <option value="CER / energia">CER / energia</option>
+        <option value="Modelli finanziari / DCF">Modelli finanziari / DCF</option>
+        <option value="Consulenza startup">Consulenza startup</option>
+        <option value="Altro">Altro</option>
+      </select>
+    </div>
+    <div>
+      <label class="form-label" for="cf-message">Messaggio</label>
+      <textarea class="form-input min-h-[100px]" id="cf-message" name="message" required minlength="15" placeholder="Descrivi il progetto o la demo che ti interessa…"></textarea>
+    </div>
+    <p id="contact-form-status" class="text-sm hidden" role="status" aria-live="polite"></p>
+    <button type="submit" class="btn-primary w-full sm:w-auto" id="contact-form-submit">
+      Invia richiesta
+    </button>
+  </form>
+</div>
+
+<script define:vars={{ contactEmail, subjectPrefix }}>
+  const form = document.getElementById("contact-form");
+  const statusEl = document.getElementById("contact-form-status");
+  const submitBtn = document.getElementById("contact-form-submit");
+
+  function setStatus(message, type) {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.classList.remove("hidden", "text-genius-emerald", "text-red-400", "text-hub-muted");
+    if (type === "success") statusEl.classList.add("text-genius-emerald");
+    else if (type === "error") statusEl.classList.add("text-red-400");
+    else statusEl.classList.add("text-hub-muted");
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const data = new FormData(form);
+    const interest = String(data.get("interest") ?? "");
+    const company = String(data.get("company") ?? "—");
+    const payload = {
+      _subject: `${subjectPrefix} — ${interest}`,
+      _template: "table",
+      _captcha: "false",
+      name: data.get("name"),
+      email: data.get("email"),
+      company,
+      interest,
+      message: data.get("message"),
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Invio in corso…";
+
+    try {
+      const res = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(contactEmail)}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        },
+      );
+      if (!res.ok) throw new Error("submit failed");
+      const body = await res.json();
+      if (body.success === "false") throw new Error(body.message || "submit failed");
+      form.reset();
+      setStatus("Richiesta inviata. Ti risponderemo a breve.", "success");
+    } catch {
+      setStatus("Invio non riuscito. Scrivi a " + contactEmail, "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Invia richiesta";
+    }
+  });
+</script>

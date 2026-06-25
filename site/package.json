@@ -1,0 +1,19 @@
+{
+  "name": "genius-finance-hub",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "engines": {
+    "node": ">=18.17.1"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "5.1.4",
+    "astro": "4.16.19",
+    "tailwindcss": "^3.4.17"
+  }
+}
