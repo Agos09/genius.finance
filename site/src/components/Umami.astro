@@ -1,0 +1,9 @@
+---
+/** Umami via Cloudflare Worker proxy at /metrics/* (ad-blocker safe, no cookies). */
+const websiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const enabled = import.meta.env.PROD && websiteId;
+---
+
+{enabled && (
+  <script defer src="/metrics/script.js" data-website-id={websiteId}></script>
+)}
