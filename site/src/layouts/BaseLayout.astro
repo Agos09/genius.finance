@@ -1,4 +1,5 @@
 ---
+import DynamicBackground from "@/components/DynamicBackground.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Umami from "@/components/Umami.astro";
@@ -40,9 +41,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <Umami />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="relative min-h-screen flex flex-col">
+    <DynamicBackground />
     <Header />
-    <main class="flex-1">
+    <main class="relative z-10 flex-1">
       <slot />
     </main>
     <Footer />

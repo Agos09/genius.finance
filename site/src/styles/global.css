@@ -1,3 +1,5 @@
+@import "./dynamic-background.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +20,7 @@
   }
 
   .card {
-    @apply rounded-xl border border-hub-border bg-hub-card p-6;
+    @apply rounded-xl border border-hub-border bg-hub-card/60 backdrop-blur-sm p-6;
   }
 
   .btn-primary {

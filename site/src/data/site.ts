@@ -100,7 +100,7 @@ export const ecosystem = [
     hint: "CV, portfolio, consulenza",
   },
   {
-    label: "Didattica finanziaria",
+    label: "Educazione finanziaria",
     url: "https://wealth.finance",
     hint: "Economia aziendale, divulgazione",
   },
@@ -108,11 +108,6 @@ export const ecosystem = [
     label: "Export territorio",
     url: "https://agrovalore.it",
     hint: "Agrovalore · Daunia",
-  },
-  {
-    label: "Letteratura",
-    url: "https://braci.art",
-    hint: "Romanzi e poesie",
   },
 ] as const;
 

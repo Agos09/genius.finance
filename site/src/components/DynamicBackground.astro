@@ -1,0 +1,43 @@
+---
+const accent = "139, 92, 246";
+const accentAlt = "34, 211, 238";
+---
+
+<div class="dynamic-bg" aria-hidden="true">
+  <div class="dynamic-bg__base"></div>
+
+  <div class="dynamic-bg__orb dynamic-bg__orb--1" style={`--accent: ${accent}`}></div>
+  <div class="dynamic-bg__orb dynamic-bg__orb--2" style={`--accent: ${accentAlt}`}></div>
+
+  <svg class="dynamic-bg__mesh" preserveAspectRatio="none">
+    <line x1="8%" y1="18%" x2="22%" y2="32%" stroke={`rgba(${accentAlt}, 0.2)`} stroke-width="1" />
+    <line x1="22%" y1="32%" x2="42%" y2="22%" stroke={`rgba(${accent}, 0.18)`} stroke-width="1" />
+    <line x1="42%" y1="22%" x2="62%" y2="36%" stroke={`rgba(${accentAlt}, 0.22)`} stroke-width="1" />
+    <line x1="62%" y1="36%" x2="82%" y2="26%" stroke={`rgba(${accent}, 0.16)`} stroke-width="1" />
+    <line x1="82%" y1="26%" x2="92%" y2="48%" stroke={`rgba(${accentAlt}, 0.15)`} stroke-width="1" />
+    <line x1="14%" y1="52%" x2="32%" y2="62%" stroke={`rgba(${accent}, 0.16)`} stroke-width="1" />
+    <line x1="32%" y1="62%" x2="52%" y2="52%" stroke={`rgba(${accentAlt}, 0.2)`} stroke-width="1" />
+    <line x1="52%" y1="52%" x2="72%" y2="66%" stroke={`rgba(${accent}, 0.18)`} stroke-width="1" />
+    <line x1="72%" y1="66%" x2="88%" y2="56%" stroke={`rgba(${accentAlt}, 0.14)`} stroke-width="1" />
+    <line x1="22%" y1="32%" x2="32%" y2="62%" stroke={`rgba(${accent}, 0.1)`} stroke-width="1" />
+    <line x1="42%" y1="22%" x2="52%" y2="52%" stroke={`rgba(${accentAlt}, 0.1)`} stroke-width="1" />
+    <line x1="62%" y1="36%" x2="72%" y2="66%" stroke={`rgba(${accent}, 0.1)`} stroke-width="1" />
+
+    <circle cx="8%" cy="18%" r="2" fill={`rgba(${accentAlt}, 0.4)`} />
+    <circle cx="22%" cy="32%" r="4" fill={`rgba(${accent}, 0.55)`} class="dynamic-bg__node" />
+    <circle cx="42%" cy="22%" r="3" fill={`rgba(${accentAlt}, 0.5)`} class="dynamic-bg__node dynamic-bg__node--delay" />
+    <circle cx="62%" cy="36%" r="5" fill={`rgba(${accent}, 0.65)`} class="dynamic-bg__node" />
+    <circle cx="82%" cy="26%" r="3" fill={`rgba(${accentAlt}, 0.45)`} class="dynamic-bg__node dynamic-bg__node--delay" />
+    <circle cx="14%" cy="52%" r="3" fill={`rgba(${accent}, 0.4)`} />
+    <circle cx="32%" cy="62%" r="4" fill={`rgba(${accentAlt}, 0.55)`} class="dynamic-bg__node" />
+    <circle cx="52%" cy="52%" r="5" fill={`rgba(${accent}, 0.6)`} class="dynamic-bg__node dynamic-bg__node--delay" />
+    <circle cx="72%" cy="66%" r="3" fill={`rgba(${accentAlt}, 0.45)`} />
+    <circle cx="88%" cy="56%" r="3" fill={`rgba(${accent}, 0.4)`} class="dynamic-bg__node" />
+  </svg>
+
+  <div class="dynamic-bg__pulse dynamic-bg__pulse--1" style={`--accent: ${accentAlt}`}></div>
+  <div class="dynamic-bg__pulse dynamic-bg__pulse--2" style={`--accent: ${accent}`}></div>
+
+  <div class="dynamic-bg__grid" style={`--accent: ${accentAlt}`}></div>
+  <div class="dynamic-bg__vignette"></div>
+</div>
